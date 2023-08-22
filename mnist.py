@@ -30,7 +30,7 @@ def mouse_callback(event, x, y, flags, param):
     # 마우스가 움직이면서 왼쪽 버튼이 눌러지면
     # 마우스 움직임에 따라 선을 그린다
     elif event == cv2.EVENT_MOUSEMOVE and mouse_pressed:
-        cv2.circle(canvas, (x, y), 10, (255, 255, 255), -1)
+        cv2.circle(canvas, (x, y), 13, (255, 255, 255), -1)
     
     # 마우스 왼쪽 버튼이 떼지면 mouse_pressed를 False로
     elif event == cv2.EVENT_LBUTTONUP:
@@ -53,13 +53,11 @@ while True:
     elif cv2.waitKey(1) & 0xFF == ord(' '):
         # 캔버스의 크기를 28*28로 변환한다.
         img = cv2.resize(canvas, (28, 28), interpolation=cv2.INTER_AREA)
-        # 캔버스의 흑백을 반전한다.
-        img = cv2.bitwise_not(img)
-
+        
         # 변환된 img를 출력한다
         plt.imshow(img, cmap='gray')
         plt.show()
-        
+
         # 캔버스의 흑백을 0~1 사이의 값으로 변환한다.
         img = img / 255.0
         # 캔버스의 흑백을 3차원 배열로 변환한다.
